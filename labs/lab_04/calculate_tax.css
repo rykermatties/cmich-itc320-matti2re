@@ -29,3 +29,10 @@ span {
 div:nth-child(2) {
     margin-bottom: 1.5em;
 }
+
+.button
+{
+    text-align: right;
+    margin-right: 20em;
+
+}
