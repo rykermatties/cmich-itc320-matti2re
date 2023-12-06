@@ -1,4 +1,3 @@
-
 "use strict";
 const $ = selector => document.querySelector(selector);
 
@@ -45,7 +44,6 @@ const tickStopwatch = () => {
 const startStopwatch = evt => {
     evt.preventDefault();
 
- 
     tickStopwatch();
     stopwatchTimer = setInterval(tickStopwatch, 10);
 };

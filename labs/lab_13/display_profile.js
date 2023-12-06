@@ -1,10 +1,12 @@
 "use strict";
 
-$(document).ready( () => {
-	// display data from session storage
-	
-	$("back").click( () => {
-		
-	}); // end of click()
-	
-}); // end of ready()
+$(document).ready(() => {
+    $("#email").text(sessionStorage.getItem("email") || "");
+    $("#phone").text(sessionStorage.getItem("phone") || "");
+    $("#zip").text(sessionStorage.getItem("zip") || "");
+    $("#dob").text(sessionStorage.getItem("dob") || "");
+
+    $("#back").click(() => {
+        window.history.back();
+    });
+});

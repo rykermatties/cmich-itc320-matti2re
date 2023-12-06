@@ -27,33 +27,38 @@ const isDate = text => {
 
 $(document).ready( () => {
     $( "#save" ).click( () => {
-        $("span").text("");   // clear any previous error messages
-        let isValid = true;   // initialize isValid flag
-        
+        $("span").text("");
+        let isValid = true; 
+
         const email = $("#email").val();
         const phone = $("#phone").val();
         const zip = $("#zip").val();
         const dob = $("#dob").val();
-        
-        if ( email === "" || !email.match(/^[\w\.\-]+@[\w\.\-]+\.[a-zA-Z]+$/) ) {
+
+        if (email === "" || !email.match(/^[\w\.\-]+@[\w\.\-]+\.[a-zA-Z]+$/)) {
             isValid = false;
             $("#email").next().text("Please enter a valid email.");
         }
-        if ( phone === "" || !phone.match(/^\d{3}-\d{3}-\d{4}$/) ) {
+        if (phone === "" || !phone.match(/^\d{3}-\d{3}-\d{4}$/)) {
             isValid = false;
             $("#phone").next().text("Please enter a phone number in NNN-NNN-NNNN format.");
         }
-        if ( zip === "" || !zip.match(/^\d{5}(-\d{4})?$/) ) {
+        if (zip === "" || !zip.match(/^\d{5}(-\d{4})?$/)) {
             isValid = false;
             $("#zip").next().text("Please enter a valid zip code.");
         }
-        if ( dob === "" || !isDate(dob) ) {
+        if (dob === "" || !isDate(dob)) {
             isValid = false;
             $("#dob").next().text("Please enter a valid date in MM/DD/YYYY format.");
         }
-        
-        if (isValid) { 
-            // code that saves profile info goes here
+
+        if (isValid) {
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("phone", phone);
+            sessionStorage.setItem("zip", zip);
+            sessionStorage.setItem("dob", dob);
+
+            window.location.href = "profile.html";
         }
         
         $("#email").focus(); 

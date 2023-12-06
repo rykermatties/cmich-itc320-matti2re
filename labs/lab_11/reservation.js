@@ -2,16 +2,28 @@
 
 $(document).ready( () => {
 	const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/;
+
+    $("#tabs").tabs();
+
+    $("#arrival_date").datepicker({
+        minDate: 0,  
+        maxDate: "+90D"  
+    });
+
+    
+    $("#policies").click(() => {
+        $("#dialog").dialog({
+            modal: true,
+            width: 500
+        });
+    });
 	
-	// move the focus to the first text box
 	$("#arrival_date").focus();
 	
-	// the handler for the submit event of the form
-	// executed when the submit button is clicked
+
 	$("#reservation_form").submit( evt => {
 			let isValid = true;
 			
-			// validate the requested arrival date
 			const arrivalDate = $("#arrival_date").val().trim();
 			if (arrivalDate == "") {
 				$("#arrival_date").next().text("This field is required.");
@@ -21,7 +33,6 @@ $(document).ready( () => {
 			}
 			$("#arrival_date").val(arrivalDate);
 			
-			// validate the number of nights
 			const nights = $("#nights").val().trim();
 			if (nights == "") {
 				$("#nights").next().text("This field is required.");
@@ -34,7 +45,6 @@ $(document).ready( () => {
 			}
 			$("#nights").val(nights);		
 
-			// validate the name entry
 			const name = $("#name").val().trim();
 			if (name == "") {
 				$("#name").next().text("This field is required.");
@@ -44,7 +54,6 @@ $(document).ready( () => {
 			}
 			$("#name").val(name);
 						
-			// validate the email entry with a regular expression
 			const email = $("#email").val().trim();
 			if (email == "") { 
 				$("#email").next().text("This field is required.");
@@ -57,7 +66,6 @@ $(document).ready( () => {
 			}
 			$("#email").val(email); 
 			
-			// validate the phone number
 			const phone = $("#phone").val().trim();
 			if (phone == "") { 
 				$("#phone").next().text("This field is required.");
@@ -67,10 +75,9 @@ $(document).ready( () => {
 			}
 			$("#phone").val(phone);
 			
-			// prevent the submission of the form if any entries are invalid 
 			if (!isValid) {
 				evt.preventDefault();				
 			}
-		} // end function
-	);	// end submit
-}); // end ready
+		} 
+	);	
+}); 

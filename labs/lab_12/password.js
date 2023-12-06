@@ -15,8 +15,25 @@ $(document).ready( () => {
         $("#password").val( "" ); // clear previous entry
     
         const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-+!@";
+
+    const numCharacters = $("#num").val().trim();
+
+    if (!numCharacters || isNaN(numCharacters)) {
+        alert("Please enter a valid number.");
+        return;
+    }
+
+    const numberOfCharacters = parseInt(numCharacters);
+
+    let password = "";
+    for (let i = 0; i < numberOfCharacters; i++) {
+        const randomIndex = getRandomNumber(chars.length) - 1;
+        password += chars.charAt(randomIndex);
+    }
+
+    $("#password").val(password);
         
-    }); // end click()
+    }); 
     
     $("#clear").click( () => {
         $("#num").val( "" );
